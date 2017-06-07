@@ -35,7 +35,7 @@ module Fluent
         record[k] = v
         # take onion domain
         if v.match(/[a-z0-9]{32}\|[a-z0-9]{16}/)
-          record["domain"] = v.split("|")[1]
+          record["domain"] = v.split("|")[1] + ".onion"
         end
         yield time, record
       end
