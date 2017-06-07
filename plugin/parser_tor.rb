@@ -7,7 +7,7 @@ module Fluent
       Plugin.register_parser("tor", self)
 
       config_param :delimiter, :string, :default => " " # delimiter is configurable with " " as default
-      config_param :time_format, :string, :default => "%b %d %H:%M:%S.%L" #"%b %d %H:%M:%S.%L" # time_format is configurable
+      config_param :time_format, :string, :default => "%b %d %H:%M:%S.%L" # time_format is configurable
 
       # This method is called after config_params have read configuration parameters
       def configure(conf)
