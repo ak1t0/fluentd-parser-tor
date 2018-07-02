@@ -32,15 +32,15 @@ module Fluent::Plugin
       time = @time_parser.parse(time)
       record = {}
       k, v = data.split(@delimiter, 2)
-      record[k] = v
+      record["raw_query"] = v
       # take onion domain
       if v.match(/[a-z0-9]{32}\|[a-z0-9]{16}/)
-        record["domain"] = v.split("|")[1] + ".onion"
+        record["address"] = v.split("|")[1] + ".onion"
       end
       # take tor node IP address
       data = Socket.getifaddrs.select{|x| x.name == "eth0" and x.addr.ipv4?}
       if (data != []) && (data.first.respond_to? :addr) 
-        record["ip"] = data.first.addr.ip_address
+        record["snooper"] = data.first.addr.ip_address
       end
       yield time, record
     end
