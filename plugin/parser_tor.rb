@@ -38,7 +38,7 @@ module Fluent::Plugin
         record["address"] = v.split("|")[1] + ".onion"
       end
       # take tor node IP address
-      data = Socket.getifaddrs.select{|x| x.name == "eth0" and x.addr.ipv4?}
+      data = Socket.getifaddrs.select{|x| (x.name == "eth0" or x.name.include?("enp")) and x.addr.ipv4?}
       if (data != []) && (data.first.respond_to? :addr) 
         record["snooper"] = data.first.addr.ip_address
       end
