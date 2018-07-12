@@ -35,7 +35,7 @@ module Fluent::Plugin
       record["raw_query"] = v
       # take onion domain
       if v.match(/[a-z0-9]{32}\|[a-z0-9]{16}/)
-        record["address"] = v.split("|")[1] + ".onion"
+        record["address"] = v.split("|")[1].strip + ".onion"
       end
       # take tor node IP address
       data = Socket.getifaddrs.select{|x| (x.name == "eth0" or x.name.include?("enp")) and x.addr.ipv4?}
