@@ -32,7 +32,7 @@ module Fluent::Plugin
       time = @time_parser.parse(time)
       record = {}
       k, v = data.split(@delimiter, 2)
-      record["raw_query"] = v
+      record["raw_query"] = v.strip
       # take onion domain
       if v.match(/[a-z0-9]{32}\|[a-z0-9]{16}/)
         record["address"] = v.split("|")[1].strip + ".onion"
